@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-
+from django.http import HttpResponse  # @UnresolvedImport
+from notes.models import Kakeibo
 # Create your views here.
 """
 Viewを返すための関数を記載するPythonファイルです。
@@ -19,7 +19,11 @@ method: get
 function: 一覧表示
 """
 def top(req):
-    return HttpResponse(b"hello world")
+    # 一覧取得コード
+    kakeibo = Kakeibo.objects.all()
+    # Viewに渡すように準備する。
+    context = {"kakeibos": kakeibo}
+    return render(req, "notes/top.html", context)
     
 
 """
