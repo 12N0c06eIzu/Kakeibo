@@ -26,8 +26,8 @@ class TestUtil():
         self.snippet = notes_models.Kakeibo.objects.create(
             title="title1",
             money=100,
-            tag=1,
-            io_flag=0)
+            tag="1",
+            io_flag="0")
 
 class TopViewTest(TestCase):
     """
@@ -49,17 +49,6 @@ class TopViewTest(TestCase):
     def test_top_return_content(self):
         res = self.client.get("/")
         self.assertTemplateUsed(res, "notes/top.html")
-    
-    """
-    # V_10003 Viewからタイトルが返ってくる。
-    not_run
-    """
-    # def test_top_return_title(self):
-    #     req = RequestFactory().get("/")
-    #     # req.user = self.user
-    #     res = notes_views.top(req)
-    #     self.assertContains(res, self.notes_models.title)
-
 
     """
     # V_2001 View newのルーティングテスト
