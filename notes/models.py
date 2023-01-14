@@ -21,5 +21,7 @@ class Kakeibo(models.Model):
     created_dt = models.DateTimeField('作成日', auto_now=True)
     updated_dt = models.DateTimeField('更新日', auto_now=True)
 
+    def __str__(self):
+        return self.title
 
     

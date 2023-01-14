@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse  # @UnresolvedImport
 from notes.models import Kakeibo
 # Create your views here.
@@ -40,8 +40,10 @@ url: /notes/{id}/
 method: get
 function: ノートの閲覧
 """
-def notes_detail(self, id):
-    pass
+def notes_detail(req, id):
+    kakeibo = get_object_or_404(Kakeibo, pk=id)
+    return render(req, 'notes/note_detail.html', {'kakeibo': kakeibo} )
+
 
 """
 url: /notes/{id}/edit/
