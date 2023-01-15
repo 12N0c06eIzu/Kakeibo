@@ -1,0 +1,17 @@
+{% load static %}
+{% load django_bootstrap5 %}
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	{% bootstrap_css %}
+	{% bootstrap_javascript %}
+	{% block extraheader %}{% endblock %}
+</head>
+<body>
+	<div class="container">
+		{% block main %}{% endblock %}
+	</div>
+</body>
+</html>

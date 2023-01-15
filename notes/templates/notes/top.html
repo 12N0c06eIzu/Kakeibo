@@ -1,69 +1,55 @@
-{% load django_bootstrap5 %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	{% bootstrap_css %}
-	{% bootstrap_javascript %}
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>toppage</title>
-</head>
-<body>
-	<div class="container">
-		<header>
-			<nav class="navbar">
-			</nav>
-		</header>
-		<div class="main">
-			<div class="welcome">
-				<a href="{% url 'notes_new' %}" class="btn btn-primary">追加</a>
-			</div>
-			<!-- 家計簿を繰り返し表示します。-->
-			{% if kakeibos %}
-				<table class="table">
-					<tr>
-						<th>タイトル</th>
-						<th>金額</th>
-						<th>タグ</th>
-						<th>取引日</th>
-						<th>入金・出金</th>
-					</tr>
-					{% for kakeibo in kakeibos %}
-						<tr>
-							<td>
-								<a 
-									href="{% url 'notes_detail' kakeibo.id %}"
-								>
-									{{ kakeibo.title }}
-								</a>
-							</td>
-							<td>
-								{{ kakeibo.money }}
-							</td>
-							<td>
-								{{ kakeibo.tag }}
-							</td>
-							<td>
-								{{ kakeibo.trading_dt }}
-							</td>
-							<td>
-								{% if kakeibo.io_flag == "0"%}
-									入金
-								{% else %}
-									出金
-								{% endif%}
-							</td>
-						</tr>
-					{% endfor %}
-				</table>					
-			{% else %}
-				<p>snippet登録なし</p>
-			{% endif %}
-			
-		</div>
-		<footer>
-		</footer>
+{% extends "base.html" %}
+{% block main %}
+<header>
+	<h1>一覧画面</h1>
+</header>
+<div class="main">
+	<div class="welcome">
+		<a href="{% url 'notes_new' %}" class="btn btn-primary">追加</a>
 	</div>
-</body>
-</html>
+	<!-- 家計簿を繰り返し表示します。-->
+	{% if kakeibos %}
+		<table class="table">
+			<tr>
+				<th>タイトル</th>
+				<th>金額</th>
+				<th>タグ</th>
+				<th>取引日</th>
+				<th>入金・出金</th>
+			</tr>
+			{% for kakeibo in kakeibos %}
+				<tr>
+					<td>
+						<a 
+							href="{% url 'notes_detail' kakeibo.id %}"
+						>
+							{{ kakeibo.title }}
+						</a>
+					</td>
+					<td>
+						{{ kakeibo.money }}
+					</td>
+					<td>
+						{{ kakeibo.tag }}
+					</td>
+					<td>
+						{{ kakeibo.trading_dt }}
+					</td>
+					<td>
+						{% if kakeibo.io_flag == "0"%}
+							入金
+						{% else %}
+							出金
+						{% endif%}
+					</td>
+				</tr>
+			{% endfor %}
+		</table>					
+	{% else %}
+		<p>snippet登録なし</p>
+	{% endif %}
+	
+</div>
+<footer>
+</footer>
+{% endblock %}

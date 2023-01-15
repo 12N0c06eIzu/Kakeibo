@@ -1,19 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="container">
-        <header></header>
-        <div class="main">
-            <h2>{{ kakeibo.title }} by {{ kakeibo.created_dt }}</h2>
-            <small>{{ kakeibo }}</small>
-        </div>
-        <footer></footer>
-    </div>
-</body>
-</html>
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block main %}
+<header>
+	<h1>詳細画面</h1>
+</header>
+<div class="main">
+    <h2>タイトル： {{ kakeibo.title }}</h2>
+    <p>作成日：{{ kakeibo.created_dt }}
+    <a href="{% url 'notes_edit' kakeibo.id %}">編集</a>
+    </p>
+	<table class="table">
+		<tr>
+			<th>取引日</th>
+			<th>金額</th>
+			<th>入金・出金</th>
+			<th>タグ</th>
+		</tr>
+		<tr>
+			<td>{{ kakeibo.trading_dt }}</td>
+			<td>{{ kakeibo.money}}</td>
+			<td>{{ kakeibo.io_flag }}</td>
+			<td>{{ kakeibo.tag }}</td>
+		</tr>
+	</table>
+</div>
+<footer>
+</footer>
+{% endblock %}
