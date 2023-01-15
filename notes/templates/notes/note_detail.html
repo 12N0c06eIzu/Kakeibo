@@ -2,9 +2,9 @@
 {% load django_bootstrap5 %}
 
 {% block main %}
-<header>
-	<h1>詳細画面</h1>
-</header>
+
+<h1>詳細画面</h1>
+
 <div class="main">
     <h2>タイトル： {{ kakeibo.title }}</h2>
     <p>作成日：{{ kakeibo.created_dt }}
@@ -25,6 +25,5 @@
 		</tr>
 	</table>
 </div>
-<footer>
-</footer>
+
 {% endblock %}

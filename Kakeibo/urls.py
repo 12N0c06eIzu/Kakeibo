@@ -27,5 +27,6 @@ from notes.views import top
 urlpatterns = [
     path('', top,name='top'),
     path('notes/', include('notes.urls')),
+    path('accounts/', include('accounts.urls')),
     path('admin/', admin.site.urls),
 ]

@@ -3,14 +3,14 @@
 
 {% block main %}
 
-<h1>編集画面</h1>
+<h1>ログイン画面</h1>
 
 <div class="main">
 	<form action="" method="post">
 		{% csrf_token %}
+		<inputtype="hidden"name="next"value="{{ next }}"/>
 		{% bootstrap_form form%}
-		{% bootstrap_button button_type="submit" content="作成" %}
+		{% bootstrap_button button_type="submit" content="ログイン" %}
 	</form>
 </div>
-
 {% endblock %}

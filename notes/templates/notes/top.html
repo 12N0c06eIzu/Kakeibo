@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block main %}
-<header>
-	<h1>一覧画面</h1>
-</header>
+
+<h1>一覧画面</h1>
+
 <div class="main">
 	<div class="welcome">
 		<a href="{% url 'notes_new' %}" class="btn btn-primary">追加</a>
@@ -36,7 +36,7 @@
 						{{ kakeibo.trading_dt }}
 					</td>
 					<td>
-						{% if kakeibo.io_flag == "0"%}
+						{% if kakeibo.io_flag == 0%}
 							入金
 						{% else %}
 							出金
@@ -50,6 +50,5 @@
 	{% endif %}
 	
 </div>
-<footer>
-</footer>
+
 {% endblock %}
