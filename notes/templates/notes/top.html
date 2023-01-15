@@ -13,7 +13,9 @@
 		<div class="main">
 			<!-- 家計簿を繰り返し表示します。-->
 			{% for kakeibo in kakeibos %}
-				<li>{{ kakeibo.title }}</li>
+				<li>
+				<a href="{% url 'notes_detail' kakeibo.id %}">{{kakeibo.title }}</a>
+				</li>
 			{% endfor %}
 			
 			<!-- 家計簿の登録が有無を表示します。 -->

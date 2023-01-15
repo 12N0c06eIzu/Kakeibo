@@ -68,10 +68,24 @@ class NotesNewViewTest(TestCase):
     """
     def test_resolve_notes_new(self):
         found = resolve("/notes/new/")
-        self.assertEqual(notes_views.notes_new,found.func) 
+        self.assertEqual(notes_views.notes_new,found.func)
+        
+    def test_render_creation_form(self):
+        res = self.client.get("/notes/new/")
+        self.assertContains(res,"登録画面",status_code=200)
+        
+    def test_create_snippet(self):
+        # 家計簿オブジェクトを用意する。
+        kakeibo = TestUtil().createKakeibo()
+
+        data={'title':'タイトル','code':'コード','description':'解説'}
+        self.client.post("/notes/new/",data)
+        kakeibo=Kakeibo.objects.get(title='title1')
+        self.assertEqual(100, kakeibo.money)
+        # trading_dt='2022-12-31 00:00:00',
+        # self.assertEqual("2022-12-31 00:00:00", kakeibo.trading_dt)
          
 class NotesDetailViewTest(TestCase):
-    TestUtil().setUp()
     """
     # V_3001 View detailのルーティングテスト
     """
