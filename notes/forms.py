@@ -18,8 +18,7 @@ class NotesForm(forms.ModelForm):
             'tag',
             'trading_dt',
             'io_flag'
-            )
+        )
         widgets = {
             'trading_dt': DatePickerInput(),
-            }
-        
+        }

@@ -3,6 +3,7 @@ Created on 2023/01/13
 
 @author: hayashirikuto
 '''
+import notes.views as notes_root
 from Kakeibo.urls import path
 
 """
@@ -13,10 +14,9 @@ path("", ),
 ・親玉になるアプリのurls.pyにImportして呼び出してください。
 """
 
-import notes.views as notes_root
 
 urlpatterns = [
-    path('new/', notes_root.notes_new,name='notes_new'),
-    path('<int:id>/', notes_root.notes_detail,name='notes_detail'),
-    path('<int:id>/edit/', notes_root.notes_edit,name='notes_edit'),
-    ]
+    path('new/', notes_root.notes_new, name='notes_new'),
+    path('<int:id>/', notes_root.notes_detail, name='notes_detail'),
+    path('<int:id>/edit/', notes_root.notes_edit, name='notes_edit'),
+]
