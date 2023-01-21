@@ -2,10 +2,10 @@
 {% load django_bootstrap5 %}
 
 {% block main %}
-
 <h1>登録画面</h1>	
 
 <div class="main">
+	{{ form.media }} 
 	<form action="" method="post">
 		{% csrf_token %}
 		{% bootstrap_form form%}
