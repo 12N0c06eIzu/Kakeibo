@@ -33,15 +33,15 @@ class Kakeibo(models.Model):
     """
 
     list = [
-        (0, "出金"),
-        (1, "入金"),
+        ("0", "出金"),
+        ("1", "入金"),
     ]
 
     title = models.CharField('タイトル', max_length=128)
     money = models.IntegerField('金額')
     tag = models.ForeignKey(Tag, on_delete=models.PROTECT)
     trading_dt = models.DateTimeField('取引日')
-    io_flag = models.IntegerField('入払区分', choices=list)
+    io_flag = models.CharField('入払区分', max_length=1,  choices=list)
     created_dt = models.DateTimeField('作成日', auto_now=True)
     updated_dt = models.DateTimeField('更新日', auto_now=True)
 
