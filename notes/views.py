@@ -1,9 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse  # @UnresolvedImport
 from notes.models import Kakeibo
-from notes.forms import NotesForm, SearchForm
+from notes.forms import NotesForm
 from pip._internal import req
-
 # Create your views here.
 """
 Viewを返すための関数を記載するPythonファイルです。
@@ -26,20 +25,8 @@ function: 一覧表示
 def top(req):
     # 一覧取得コード
     kakeibo = Kakeibo.objects.all()
-    
-    # 検索用のフォームを用意する。
-    form = SearchForm()
-    search_query = None
-    if 'search_txt' in req.GET:
-        if req.GET['search_txt']:
-            form = SearchForm(req.GET)
-            
-            if form.is_valid():
-                search_query = form.cleaned_data['search_txt']
-                kakeibo = Kakeibo.objects.all().filter(title__contains=search_query)
-                
     # Viewに渡すように準備する。
-    context = {"kakeibos": kakeibo, 'form': form}
+    context = {"kakeibos": kakeibo}
     return render(req, "notes/top.html", context)
 
 
