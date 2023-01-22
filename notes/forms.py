@@ -22,3 +22,15 @@ class NotesForm(forms.ModelForm):
         widgets = {
             'trading_dt': DatePickerInput(),
         }
+
+
+class SearchForm(forms.Form):
+    """
+    Kakeibo検索用クラス。
+
+    """
+    search_txt = forms.CharField(
+        label='タイトル検索',
+        max_length=225,
+        required=False,
+    )
