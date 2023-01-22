@@ -6,7 +6,6 @@
 <div class="main">
 	<div class="welcome">
 		<a href="{% url 'notes_new' %}" class="btn btn-primary">追加</a>
-		{% include 'notes/search.html'%}
 	</div>
 	<!-- 家計簿を繰り返し表示します。-->
 	{% if kakeibos %}
@@ -47,7 +46,7 @@
 			{% endfor %}
 		</table>					
 	{% else %}
-		<p>家計簿の登録なし</p>
+		<p>snippet登録なし</p>
 	{% endif %}
 	
 </div>

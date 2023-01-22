@@ -21,7 +21,7 @@ class Kakeibo(models.Model):
     money = models.IntegerField('金額')
     tag = models.CharField('タグ', blank=True, max_length=30)
     trading_dt = models.DateTimeField('取引日')
-    io_flag = models.IntegerField('入払区分',choices=MoneyIO.choices)
+    io_flag = models.IntegerField(choices=MoneyIO.choices)
     created_dt = models.DateTimeField('作成日', auto_now=True)
     updated_dt = models.DateTimeField('更新日', auto_now=True)
 
