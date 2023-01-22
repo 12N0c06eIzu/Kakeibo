@@ -1,47 +1,27 @@
-import uuid
 from django.db import models
+from django.conf import settings
+
 # Create your models here.
-
-
-class Tag(models.Model):
-    """
-    Kakeiboモデルにあるtagの外部キー
-    １取引に１つ紐づける取引の種別
-    """
-    tag_code = models.UUIDField(
-        'タグUUID', primary_key=True, default=uuid.uuid4, editable=False)
-    tag_name = models.CharField('タグ名称', blank=True, max_length=30, unique=True)
-
-    class Meta:
-        verbose_name = ("Tag")
-        verbose_name_plural = ("Tags")
-
-    def __str__(self):
-        return self.tag_name
-
-
+"""
+家計簿を管理するクラス
+・タイトル
+・金額 
+・タグ マスタに登録されたCodeを入れる。
+・取引日 日付
+・入出フラグ : MoneyIOクラスから選択する。
+・作成日 日付
+・更新日 日付
+"""
 class Kakeibo(models.Model):
-    """
-    家計簿を管理するクラス
-    ・タイトル
-    ・金額
-    ・タグ マスタに登録されたCodeを入れる。Tagマスタを参照している。
-    ・取引日 日付
-    ・入出フラグ : MoneyIOクラスから選択する。
-    ・作成日 日付
-    ・更新日 日付
-    """
-
-    list = [
-        (0, "出金"),
-        (1, "入金"),
-    ]
-
+    class MoneyIO(models.IntegerChoices):
+        入金 = 1
+        出金 = 0
+    
     title = models.CharField('タイトル', max_length=128)
     money = models.IntegerField('金額')
-    tag = models.ForeignKey(Tag, on_delete=models.PROTECT)
+    tag = models.CharField('タグ', blank=True, max_length=30)
     trading_dt = models.DateTimeField('取引日')
-    io_flag = models.IntegerField('入払区分', choices=list)
+    io_flag = models.IntegerField(choices=MoneyIO.choices)
     created_dt = models.DateTimeField('作成日', auto_now=True)
     updated_dt = models.DateTimeField('更新日', auto_now=True)
 
